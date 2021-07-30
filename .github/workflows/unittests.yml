@@ -21,7 +21,6 @@ jobs:
         auto-update-conda: true
         python-version: 3.9
         channel-priority: strict
-        environment-file: .ci_support/environment.yml
     - name: Test
       shell: bash -l {0}
       run: python -m unittest discover tests
