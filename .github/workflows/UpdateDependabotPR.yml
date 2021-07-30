@@ -20,3 +20,7 @@ jobs:
       - name: Test
         shell: bash -l {0}
         run: python -m unittest discover tests
+      - name: Test2
+        shell: bash -l {0}
+        run: python tests/dummy.py
+
