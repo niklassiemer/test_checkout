@@ -1,0 +1,23 @@
+name: TestBranch
+
+on:
+  pull_request_target:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }} # Check out the head of the actual branch, not the PR
+          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: 3.9
+          channel-priority: strict
+          environment-file: .ci_support/environment.yml
+      - name: Test
+        shell: bash -l {0}
+        run: python -m unittest discover tests
