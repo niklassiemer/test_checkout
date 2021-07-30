@@ -7,7 +7,7 @@ on: issue_comment
 
 jobs:
   pr_build:
-    if: ${{ github.event.issue.pull_request && github.event.issue.comment.body == "@pyiron-runner trigger test"}}
+    if: ${{ github.event.issue.pull_request}}
 
     runs-on: ubuntu-latest
 
