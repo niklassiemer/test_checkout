@@ -4,8 +4,15 @@
 name: comment trigger
 
 on: issue_comment
+  types: [created, edited]
 
 jobs:
+  name: PR comment
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Comment on PR #${{ github.event.issue.number }}"
   pr_build:
     if: ${{ github.event.issue.pull_request}}
 
