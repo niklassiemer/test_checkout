@@ -1,6 +1,6 @@
 import unittest
 
-whoami = "master"
+whoami = "pr"
 
 
 class MyTestCase(unittest.TestCase):
