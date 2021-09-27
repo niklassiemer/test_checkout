@@ -1,6 +1,7 @@
 import unittest
 
 whoami = "pr"
+new_line = "new!"
 
 
 class MyTestCase(unittest.TestCase):
