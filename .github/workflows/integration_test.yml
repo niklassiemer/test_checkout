@@ -25,5 +25,6 @@ jobs:
       shell: bash -l {0}
       run: python -m unittest discover tests
     - name: IntegrationTest2
+      if: contains(github.event.pull_request.labels.*.name, 'integration')
       shell: bash -l {0}
       run: python tests/dummy.py
