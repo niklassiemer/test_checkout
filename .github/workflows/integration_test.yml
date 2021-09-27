@@ -27,4 +27,6 @@ jobs:
     - name: IntegrationTest2
       if: contains(github.event.pull_request.labels.*.name, 'integration')
       shell: bash -l {0}
-      run: python tests/dummy.py
+      run: | 
+        python tests/dummy.py 
+        echo ${{ github.event }}
