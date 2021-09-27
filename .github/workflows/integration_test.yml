@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    if: ${{ (github.event.type == 'PullRequestEvent'  && contains(github.event.pull_request.labels.*.name, 'integration') || github.event.type == 'PushEvent' }}
+    if: ${{ ( github.event.type == 'PullRequestEvent'  && contains(github.event.pull_request.labels.*.name, 'integration' ) || github.event.type == 'PushEvent' }}
     runs-on: ubuntu-latest
 
     steps:
