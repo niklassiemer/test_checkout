@@ -30,7 +30,7 @@ jobs:
         python tests/dummy.py 
         echo ${{ github.event.action }}
     - name: PushEvent
-      if: $GITHUB_EVENT_NAME == 'PushEvent'
+      if: github.event_name == 'push_event'
       shell: bash -l {0}
       run: echo "PushEvent"
     - name: PR event with integration label
