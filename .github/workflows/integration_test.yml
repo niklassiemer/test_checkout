@@ -38,7 +38,7 @@ jobs:
       shell: bash -l {0}
       run: echo "PR with integration label"
     - name: PR event
-      if: $GITHUB_EVENT_NAME == 'PullRequest'
+      if: github.event_name == 'pull_request'
       shell: bash -l {0}
       run: echo "PR event"
     - name: event with integration label
