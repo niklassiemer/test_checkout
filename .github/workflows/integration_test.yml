@@ -33,3 +33,25 @@ jobs:
       run: | 
         python tests/dummy.py 
         echo ${{ github.event.action }}
+    - name: PushEvent
+      if: github.event.type == 'PushEvent'
+      shell: bash -l {0}
+      run: echo "PushEvent"
+    - name: PR event with integration label
+      if: ( github.event.type == 'PullRequestEvent'  && contains(github.event.pull_request.labels.*.name, 'integration' ))
+      shell: bash -l {0}
+      run: echo "PR with integration label"
+    - name: PR event
+      if: github.event.type == "PullRequestEvent"
+      shell: bash -l {0}
+      run: echo "PR event"
+    - name: event with integration label
+      if: contains(github.event.pull_request.labels.*.name, 'integration' )
+      shell: bash -l {0}
+      run: echo "has integration label"
+    - name: Push event or PR with integration label
+      if: |
+        github.event.type == 'PushEvent' ||
+        ( github.event.type == 'PullRequestEvent'  && contains(github.event.pull_request.labels.*.name, 'integration' ))
+      shell: bash -l {0}
+      run: echo "Is push to master or PR to master with integration label - intended usage!"
