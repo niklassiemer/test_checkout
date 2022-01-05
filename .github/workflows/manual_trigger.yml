@@ -16,7 +16,7 @@ jobs:
       - name: test
         if: ${{ github.event.comment.body }}
         run: |
-          echo "Here I should run!"
+          echo "Here I should run! "
           
 
   issue_commented:
