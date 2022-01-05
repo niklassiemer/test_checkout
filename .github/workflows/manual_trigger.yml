@@ -11,7 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "Comment on PR #${{ github.event.issue.number }}"
+          echo "Comment on PR #${{ github.event.issue.number }} with:"
+          echo "${{ github.event.comment.body }}"
+      - name: test
+        if: github.event.comment.body == "foo"
+        run: |
+          echo "Here I should run!"
+          
 
   issue_commented:
     # This job only runs for issue comments
