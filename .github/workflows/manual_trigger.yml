@@ -5,7 +5,7 @@ name: comment trigger
 on: issue_comment
 
 jobs:
-  pr_commented:
+  commented:
     # This job only runs for pull request comments
     name: PR comment
     runs-on: ubuntu-latest
