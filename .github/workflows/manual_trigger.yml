@@ -13,6 +13,11 @@ jobs:
       - run: |
           echo "Comment on PR #${{ github.event.issue.number }} with:"
           echo "${{ github.event.comment.body }}"
+      - name: Checkout
+        if: ${{ github.event.comment.body == 'black' }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.issue.pull_request.head.sha }}
       - name: test
         if: ${{ github.event.comment.body == 'black' }}
         uses: psf/black@stable
@@ -27,6 +32,8 @@ jobs:
       - name: UpdateDependabotPR push
         if: ${{ github.event.comment.body == 'black' }}
         uses: ad-m/github-push-action@master
+        with:
+         branch: ${{ github.event.issue.pull_request.head.ref }}
           
 
   issue_commented:
