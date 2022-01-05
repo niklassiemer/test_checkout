@@ -14,9 +14,19 @@ jobs:
           echo "Comment on PR #${{ github.event.issue.number }} with:"
           echo "${{ github.event.comment.body }}"
       - name: test
-        if: ${{ github.event.comment.body == 'test' }}
+        if: ${{ github.event.comment.body == 'black' }}
+        uses: psf/black@stable
+        with:
+          options: ""
+      - name: commit
+        if: ${{ github.event.comment.body == 'black' }}
         run: |
-          echo "Here I should run!"
+          git config --local user.email "pyiron@mpie.de"
+          git config --local user.name "pyiron-runner"
+          git commit -m "Use black formatting" -a
+      - name: UpdateDependabotPR push
+        if: ${{ github.event.comment.body == 'black' }}
+        uses: ad-m/github-push-action@master
           
 
   issue_commented:
