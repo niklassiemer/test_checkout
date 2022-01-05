@@ -13,6 +13,8 @@ jobs:
       - run: |
           echo "Comment on PR #${{ github.event.issue.number }} with:"
           echo "${{ github.event.comment.body }}"
+      - name: DebugInfo
+        uses: hmarr/debug-action@v2
       - name: Checkout
         if: ${{ github.event.comment.body == 'black' }}
         uses: actions/checkout@v2
