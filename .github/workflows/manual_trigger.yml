@@ -1,4 +1,5 @@
 # Copied from https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#issue_comment
+# This workflow _only_ works for the default branch!
 
 on: issue_comment
 
