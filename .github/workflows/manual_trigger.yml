@@ -18,8 +18,11 @@ jobs:
       - name: Checkout
         if: ${{ github.event.comment.body == 'black' }}
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.issue.pull_request.head.sha }}
+      - name: Checkout Pull Request
+        if: ${{ github.event.comment.body == 'black' }}
+        run: hub pr checkout ${{ github.event.issue.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: test
         if: ${{ github.event.comment.body == 'black' }}
         uses: psf/black@stable
@@ -31,11 +34,13 @@ jobs:
           git config --local user.email "pyiron@mpie.de"
           git config --local user.name "pyiron-runner"
           git commit -m "Use black formatting" -a
-      - name: UpdateDependabotPR push
-        if: ${{ github.event.comment.body == 'black' }}
-        uses: ad-m/github-push-action@master
-        with:
-         branch: ${{ github.event.issue.pull_request.head.ref }}
+      - name: DebugInfo2
+        uses: hmarr/debug-action@v2
+      #- name: UpdateDependabotPR push
+      #  if: ${{ github.event.comment.body == 'black' }}
+      #  uses: ad-m/github-push-action@master
+      #  with:
+      #   branch: ${{ github.event.issue.pull_request.head.ref }}
           
 
   issue_commented:
