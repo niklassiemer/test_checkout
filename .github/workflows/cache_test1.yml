@@ -17,7 +17,7 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: cached_file
-        key: ${{ GITHUB.cache_no }}
+        key: ${{ env.cache_no }}
       id: cache
     - name: display env
       run: |
