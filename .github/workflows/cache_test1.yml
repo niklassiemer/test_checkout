@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Env
       run: |
-        cat .github/cache_no.env >> $GITHUB_ENV
+        cat .github/cache.env >> $GITHUB_ENV
     - name: Setup environment
       run: echo "Cache 1" >  environment.yml
     - uses: actions/cache@v2
