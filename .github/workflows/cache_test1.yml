@@ -1,0 +1,28 @@
+
+name: Cache1
+on: 
+  pull_request:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  steps:
+    - name: Setup environment
+      run: cp .ci_support/environment.yml environment.yml
+  
+    - uses: actions/cache@v2
+      with:
+        path: cached_file
+        key: fixed_key
+      id: cache
+    - name: display cache
+      run: |
+        echo "No cache found"
+        cat environment.yml
+      if: steps.cache.outputs.cache-hit != 'true'  
+     - name: display cache2
+      run: |
+        echo "cache found"
+        cat environment.yml
+      if: steps.cache.outputs.cache-hit == 'true'  
