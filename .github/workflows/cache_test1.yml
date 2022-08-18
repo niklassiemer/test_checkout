@@ -7,10 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-  steps:
+    steps:
     - name: Setup environment
-      run: cp .ci_support/environment.yml environment.yml
-  
+      run: echo "Cache 1" >  environment.yml
     - uses: actions/cache@v2
       with:
         path: cached_file
@@ -21,7 +20,7 @@ jobs:
         echo "No cache found"
         cat environment.yml
       if: steps.cache.outputs.cache-hit != 'true'  
-     - name: display cache2
+    - name: display cache2
       run: |
         echo "cache found"
         cat environment.yml
