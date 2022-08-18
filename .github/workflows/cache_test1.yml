@@ -17,7 +17,7 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: cached_file
-        key: ${{ env.cache_no }}
+        key: cache-${{ env.cache_no }}
       id: cache
     - name: display env
       run: |
