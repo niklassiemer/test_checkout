@@ -15,13 +15,16 @@ jobs:
         path: cached_file
         key: fixed_key
       id: cache
-    - name: display cache
+    - name: display env
       run: |
         echo "No cache found"
-        cat environment.yml
+        sleep 2
+        cat environment.yml > cached_file
       if: steps.cache.outputs.cache-hit != 'true'  
-    - name: display cache2
+    - name: display env2
       run: |
         echo "cache found"
         cat environment.yml
-      if: steps.cache.outputs.cache-hit == 'true'  
+      if: steps.cache.outputs.cache-hit == 'true' 
+    - name: display cache
+      run: cat cached_file
