@@ -27,7 +27,7 @@ jobs:
         key: conda-${{ env.DATE }}
       id: cache
       env:
-        DATE: ${{date +'%Y%m%d'}}
+        DATE: ${{$(date +'%Y%m%d')}}
     - name: Test
       shell: bash -l {0}
       run: python -m unittest discover tests
