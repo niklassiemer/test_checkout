@@ -21,6 +21,13 @@ jobs:
         auto-update-conda: true
         python-version: 3.9
         channel-priority: strict
+    - uses: actions/cache@v2
+      with:
+        path: ${{ inputs.env-prefix }}
+        key: ${{ inputs.env-label }}-conda-${{ env.DATE }}
+      id: cache
+      env:
+        DATE: $(date +'%Y%m%d')
     - name: Test
       shell: bash -l {0}
       run: python -m unittest discover tests
