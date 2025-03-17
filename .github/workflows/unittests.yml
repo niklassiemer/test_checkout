@@ -29,6 +29,7 @@ jobs:
       run: python tests/dummy.py
       
   job2:
+    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
     - name: fail
@@ -38,7 +39,6 @@ jobs:
   job3:
     runs-on: ubuntu-latest
     needs: [build, job2]
-    if: ${{ always() }}
     steps:
     - uses: hmarr/debug-action@v2
     - name: report
